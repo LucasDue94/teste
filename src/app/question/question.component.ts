@@ -12,7 +12,7 @@ export class QuestionComponent {
 
   numbersArray = this.formBuilder.array([]);
   form: FormGroup = this.formBuilder.group({
-      size: [null, [Validators.required, Validators.min(1), Validators.max(1000)]],
+      inputSize: [null, [Validators.required, Validators.min(1), Validators.max(1000)]],
       numbers: this.numbersArray
     }
   );
@@ -24,9 +24,9 @@ export class QuestionComponent {
 
   createControls(): void {
     this.numbersArray.clear();
-    this.form.controls.size.markAsTouched();
-    const inputSize = this.form.value ? this.form.value.size : null;
-    if (inputSize) {
+    this.form.controls.inputSize.markAsTouched();
+    const inputSize = this.form.value ? this.form.value.inputSize : null;
+    if (this.form.valid) {
       for (let i = 0; i < inputSize; i++) {
         this.numbersArray.push(this.formBuilder.control(null, [Validators.required, Validators.min(-1000), Validators.max(1000)]));
       }
@@ -34,7 +34,7 @@ export class QuestionComponent {
   }
 
   hasErrors = (control: AbstractControl): boolean => control.hasError('required') ||
-    control.hasError('max') || control.hasError('min');
+    control.hasError('max') || control.hasError('min')
 
   clear(): void {
     this.numbersArray.clear();
@@ -43,13 +43,13 @@ export class QuestionComponent {
 
   generateSet(): void {
     this.form.markAllAsTouched();
-    const output = new Set();
+    const output = new Set<number>();
     if (this.numbersArray.valid) {
       this.numbersArray.controls.forEach(control => {
         output.add(control.value);
       });
     }
-    this.ordenedOutput = (Array.from(output) as number[]).sort();
+    this.ordenedOutput = Array.from(output).sort((a, b) => a - b);
     if (this.ordenedOutput.length > 0) {
       this.openResult();
     }

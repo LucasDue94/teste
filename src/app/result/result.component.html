@@ -1,4 +1,5 @@
 <h2>Resultado</h2>
 <mat-dialog-content>
   <h3 *ngFor="let number of outputArray">{{number}}</h3>
+  <button id="ok-button" color="primary" mat-raised-button (click)="close()">Ok</button>
 </mat-dialog-content>

@@ -11,16 +11,16 @@
   <mat-card-content>
     <ng-container [formGroup]="form">
       <mat-form-field>
-        <input matInput type="number" formControlName="size" placeholder="Digite um número">
-        <mat-error *ngIf="hasErrors(form.controls.size)">
+        <input matInput type="number" formControlName="inputSize" placeholder="Digite um número">
+        <mat-error *ngIf="hasErrors(form.controls.inputSize)">
           O número fornecido precisa estar dentro do intervalo (1<= N <=1000)
         </mat-error>
       </mat-form-field>
       <button color="primary" mat-raised-button (click)="createControls()">Ok</button>
       <button mat-button (click)="clear()">Limpar</button>
-      <mat-card *ngIf="numbersArray.length > 0">
+      <mat-card *ngIf="numbersArray && numbersArray?.length > 0">
         <ng-container formArrayName="numbers">
-          <mat-form-field *ngFor="let control of numbersArray.controls; index as i">
+          <mat-form-field *ngFor="let control of numbersArray?.controls; index as i">
             <input matInput type="number" [formControlName]="i" placeholder="Número #{{i+1}}">
             <mat-error *ngIf="hasErrors(control)">
               O número fornecido precisa estar dentro do intervalo (-1000<= N <=1000)

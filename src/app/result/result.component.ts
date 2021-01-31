@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-result',
@@ -9,10 +9,14 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class ResultComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public outputArray: number[]) {
+  constructor(public dialogRef: MatDialogRef<ResultComponent>, @Inject(MAT_DIALOG_DATA) public outputArray: number[]) {
   }
 
   ngOnInit(): void {
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
 }
