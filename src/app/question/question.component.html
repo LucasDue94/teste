@@ -18,7 +18,7 @@
       </mat-form-field>
       <button color="primary" mat-raised-button (click)="createControls()">Ok</button>
       <button mat-button (click)="clear()">Limpar</button>
-      <mat-card *ngIf="numbersArray && numbersArray?.length > 0">
+      <mat-card *ngIf="hasControls()">
         <ng-container formArrayName="numbers">
           <mat-form-field *ngFor="let control of numbersArray?.controls; index as i">
             <input matInput type="number" [formControlName]="i" placeholder="Número #{{i+1}}">

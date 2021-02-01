@@ -23,6 +23,7 @@ export class QuestionComponent {
   }
 
   createControls(): void {
+    console.log(this.form);
     this.numbersArray.clear();
     this.form.controls.inputSize.markAsTouched();
     const inputSize = this.form.value ? this.form.value.inputSize : null;
@@ -34,7 +35,7 @@ export class QuestionComponent {
   }
 
   hasErrors = (control: AbstractControl): boolean => control.hasError('required') ||
-    control.hasError('max') || control.hasError('min')
+    control.hasError('max') || control.hasError('min');
 
   clear(): void {
     this.numbersArray.clear();
@@ -56,4 +57,6 @@ export class QuestionComponent {
   }
 
   openResult = () => this.dialog.open(ResultComponent, { data: this.ordenedOutput, width: '250px' });
+
+  hasControls = (): boolean => this.numbersArray && this.numbersArray.length > 0;
 }
