@@ -23,7 +23,6 @@ export class QuestionComponent {
   }
 
   createControls(): void {
-    console.log(this.form);
     this.numbersArray.clear();
     this.form.controls.inputSize.markAsTouched();
     const inputSize = this.form.value ? this.form.value.inputSize : null;
